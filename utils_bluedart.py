@@ -24,10 +24,7 @@ BLUEDART_LICENSE_KEY = ''
 def ship_from_bluedart(order_details, recipient_details):
 
     try:
-        if settings_DEBUG:
-            wayBillClient = 'https://netconnect.bluedart.com/API-QA/Ver1.10/Demo/ShippingAPI/WayBill/WayBillGeneration.svc?wsdl'
-        else:
-            wayBillClient = 'prod URL'
+        wayBillClient = 'https://netconnect.bluedart.com/API-QA/Ver1.10/Demo/ShippingAPI/WayBill/WayBillGeneration.svc?wsdl'
     except Exception as e:
         wayBillClient = None
         raise Exception(f'ERROR: [Utils Bluedart] Wsdl link isssue, Exception: {e}')
@@ -142,8 +139,6 @@ def ship_from_bluedart(order_details, recipient_details):
 
 
 
-
-
 def cancel_docket_bluedart(awb_numbers):
     print('Bluedart Cancel Docket')
     try:
@@ -159,7 +154,7 @@ def cancel_docket_bluedart(awb_numbers):
 
 
 def track_docket_bluedart(docket_number):
-    login_id = 'BLR01947'
+    login_id = ''
     url = (
         "https://api.bluedart.com/servlet/RoutingServlet"
         "?handler=tnt&action=custawbquery&loginid={}&awb=awb&numbers={}&format=xml&lickey={}&verno=1.3&scan=1"
