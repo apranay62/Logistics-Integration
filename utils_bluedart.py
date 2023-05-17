@@ -27,16 +27,7 @@ from orders.constants import OrderType
 from orders.utils import Invoice
 from products.utils import Product, ProductPartHelper
 from stocks.utils import ProductPackageHelper, shipping_location_by_warehouse_id
-from wakefit.constant import (
-    BATCH_INVOICE_FILE_LOC, BATCH_INVOICE_FILE_LOC_RETAIL, BLUEDART_HEAVY_SKU_CODE_SET, FILE_HOME_LOC,
-    FILE_HOME_LOC_RETAIL, Measure,
-)
-from wakefit.constant_logistic.bluedart import (
-    BLUEDART_CREDENTIALS_PRODUCTION, BLUEDART_CREDENTIALS_STAGING, BLUEDART_SERVICE_WSDL_PRODUCTION,
-    BLUEDART_SERVICE_WSDL_STAGING, BLUEDART_WSDL_PRODUCTION, BLUEDART_WSDL_STAGING,
-)
-from wakefit.credentials import BLUEDART_LICENSE_KEY
-from wakefit.feature_gate import SEQUENTIAL_INVOICING_SYSTEM
+
 from warehouses.utils import ShippingLoc, Warehouse
 
 settings_DEBUG = settings.DEBUG_CONF
@@ -117,7 +108,6 @@ def ship_from_bluedart(order_details, recipient_details, shipping_id, invoice_da
         'CustomerAddress3': shipper_details['address_3'],
         'CustomerPincode': shipper_details['pincode'],
         'CustomerMobile': shipper_details['phone_number'],
-        # 'CustomerEmailID':'support@wakefit.co',
         'Sender': shipper_details['company_name'],
     }
 
