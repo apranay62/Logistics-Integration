@@ -42,10 +42,6 @@ batch_inv_file_loc = BATCH_INVOICE_FILE_LOC
 
 logger = logging.getLogger(__name__)
 
-# NOTE:
-# PRODUCT_CODE --> D - Domestic | A - Air\Apex | E - Express
-# SUB_PRODUCT_CODE ---> P - Prepaid | C - COD
-
 
 def ship_from_bluedart(order_details, recipient_details, shipping_id, invoice_data, run_id=0):
     global home_file_loc
