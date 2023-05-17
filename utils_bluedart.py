@@ -5,23 +5,13 @@ import ssl
 import urllib
 from datetime import datetime, timedelta
 
-# Django Library
-from django.conf import settings
-
 # Third Party Library
 import pytz
 import xmltodict
 from zeep import Client
 
-settings_DEBUG = settings.DEBUG_CONF
-BLUEDART_CREDENTIALS_STAGING = ''
-BLUEDART_CREDENTIALS_PRODUCTION = ''
 
-if settings_DEBUG:  # Staging
-    credentials = BLUEDART_CREDENTIALS_STAGING
-else:  # Production
-    credentials = BLUEDART_CREDENTIALS_PRODUCTION
-
+credentials = {} # Store credentials
 
 logger = logging.getLogger(__name__)
 BLUEDART_ORIGIN_CODE_MAPPING = ''
@@ -157,10 +147,7 @@ def ship_from_bluedart(order_details, recipient_details):
 def cancel_docket_bluedart(awb_numbers):
     print('Bluedart Cancel Docket')
     try:
-        if settings_DEBUG:
-            wayBillClient = 'https://netconnect.bluedart.com/API-QA/Ver1.10/Demo/ShippingAPI/WayBill/WayBillGeneration.svc?wsdl'
-        else:
-            wayBillClient = 'Prod URL'
+        wayBillClient = 'https://netconnect.bluedart.com/API-QA/Ver1.10/Demo/ShippingAPI/WayBill/WayBillGeneration.svc?wsdl'
     except Exception:
         wayBillClient = None
         return False
@@ -188,10 +175,7 @@ def track_docket_bluedart(docket_number):
 
 def pincode_serviceability_bluedart(pincode):
     try:
-        if settings_DEBUG:
-            serviceFinderClient = 'TEST URL'
-        else:
-            serviceFinderClient = 'PROD URL'
+        serviceFinderClient = 'TEST URL'
         data = serviceFinderClient.service.GetServicesforPincode(pinCode=pincode, profile=credentials)
     except Exception as e:
         print('Exception', e)
